@@ -1,28 +1,19 @@
 import {
   Construction,
   LayoutDashboard,
-  Monitor,
-  Bug,
-  ListTodo,
   FileX,
   HelpCircle,
   Lock,
-  Bell,
   Package,
-  Palette,
   ServerOff,
-  Settings,
   Wrench,
   UserCog,
-  UserX,
   Users,
   MessagesSquare,
   ShieldCheck,
-  AudioWaveform,
   Command,
-  GalleryVerticalEnd,
+  Key,
 } from 'lucide-react'
-import { ClerkLogo } from '@/assets/clerk-logo'
 import { type SidebarData } from '../types'
 
 export const sidebarData: SidebarData = {
@@ -33,171 +24,114 @@ export const sidebarData: SidebarData = {
   },
   teams: [
     {
-      name: 'Shadcn Admin',
+      name: 'Maintenance Portal',
       logo: Command,
-      plan: 'Vite + ShadcnUI',
-    },
-    {
-      name: 'Acme Inc',
-      logo: GalleryVerticalEnd,
       plan: 'Enterprise',
-    },
-    {
-      name: 'Acme Corp.',
-      logo: AudioWaveform,
-      plan: 'Startup',
     },
   ],
   navGroups: [
     {
-      title: 'General',
+      title: 'Overview',
       items: [
         {
           title: 'Dashboard',
           url: '/',
           icon: LayoutDashboard,
         },
+      ],
+    },
+
+    {
+      title: 'Infrastructure',
+      items: [
         {
-          title: 'Tasks',
-          url: '/tasks',
-          icon: ListTodo,
+          title: 'Servers & Databases',
+          url: '/servers',
+          icon: ServerOff,
         },
         {
-          title: 'Apps',
-          url: '/apps',
-          icon: Package,
-        },
-        {
-          title: 'Chats',
-          url: '/chats',
-          badge: '3',
+          title: 'SMTP Relay',
+          url: '/smtp-relay',
           icon: MessagesSquare,
         },
+      ],
+    },
+
+    {
+      title: 'Security',
+      items: [
         {
-          title: 'Users',
-          url: '/users',
+          title: 'Certificates',
+          url: '/certificates',
+          icon: ShieldCheck,
+        },
+        {
+          title: 'Secret Keys',
+          url: '/secret-keys',
+          icon: Key,
+        },
+        {
+          title: 'SAS Tokens',
+          url: '/sas-tokens',
+          icon: Lock,
+        },
+      ],
+    },
+
+    {
+      title: 'Identity & Access',
+      items: [
+        {
+          title: 'User Status',
+          url: '/user-status',
           icon: Users,
         },
         {
-          title: 'Secured by Clerk',
-          icon: ClerkLogo,
-          items: [
-            {
-              title: 'Sign In',
-              url: '/clerk/sign-in',
-            },
-            {
-              title: 'Sign Up',
-              url: '/clerk/sign-up',
-            },
-            {
-              title: 'User Management',
-              url: '/clerk/user-management',
-            },
-          ],
+          title: 'Service Accounts',
+          url: '/service-accounts',
+          icon: UserCog,
         },
-      ],
-    },
-    {
-      title: 'Pages',
-      items: [
         {
-          title: 'Auth',
+          title: 'Security Groups',
+          url: '/security-groups',
           icon: ShieldCheck,
-          items: [
-            {
-              title: 'Sign In',
-              url: '/sign-in',
-            },
-            {
-              title: 'Sign In (2 Col)',
-              url: '/sign-in-2',
-            },
-            {
-              title: 'Sign Up',
-              url: '/sign-up',
-            },
-            {
-              title: 'Forgot Password',
-              url: '/forgot-password',
-            },
-            {
-              title: 'OTP',
-              url: '/otp',
-            },
-          ],
         },
         {
-          title: 'Errors',
-          icon: Bug,
-          items: [
-            {
-              title: 'Unauthorized',
-              url: '/errors/unauthorized',
-              icon: Lock,
-            },
-            {
-              title: 'Forbidden',
-              url: '/errors/forbidden',
-              icon: UserX,
-            },
-            {
-              title: 'Not Found',
-              url: '/errors/not-found',
-              icon: FileX,
-            },
-            {
-              title: 'Internal Server Error',
-              url: '/errors/internal-server-error',
-              icon: ServerOff,
-            },
-            {
-              title: 'Maintenance Error',
-              url: '/errors/maintenance-error',
-              icon: Construction,
-            },
-          ],
+          title: 'Roles & Applications',
+          url: '/roles-applications',
+          icon: Package,
         },
       ],
     },
+
     {
-      title: 'Other',
+      title: 'Operations',
       items: [
         {
-          title: 'Settings',
-          icon: Settings,
-          items: [
-            {
-              title: 'Profile',
-              url: '/settings',
-              icon: UserCog,
-            },
-            {
-              title: 'Account',
-              url: '/settings/account',
-              icon: Wrench,
-            },
-            {
-              title: 'Appearance',
-              url: '/settings/appearance',
-              icon: Palette,
-            },
-            {
-              title: 'Notifications',
-              url: '/settings/notifications',
-              icon: Bell,
-            },
-            {
-              title: 'Display',
-              url: '/settings/display',
-              icon: Monitor,
-            },
-          ],
+          title: 'Patch Management',
+          url: '/patch-management',
+          icon: Wrench,
         },
         {
-          title: 'Help Center',
-          url: '/help-center',
+          title: 'Impact Changes',
+          url: '/impact-changes',
+          icon: Construction,
+        },
+        {
+          title: 'Queries',
+          url: '/queries',
           icon: HelpCircle,
+        },
+      ],
+    },
+
+    {
+      title: 'Reports',
+      items: [
+        {
+          title: 'Compliance',
+          url: '/compliance',
+          icon: FileX,
         },
       ],
     },
