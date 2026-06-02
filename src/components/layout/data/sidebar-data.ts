@@ -51,7 +51,7 @@ export const sidebarData: SidebarData = {
         },
         {
           title: 'SMTP Relay',
-          url: '/smtp-relay',
+          url: '/smtp',
           icon: MessagesSquare,
         },
       ],

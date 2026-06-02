@@ -1,9 +1,10 @@
 import z from 'zod'
 import { createFileRoute } from '@tanstack/react-router'
-import { Certificates } from '@/features/certificates'
+// import { Certificates } from '@/features/certificates'
+import { Servers } from '@/features/servers'
 import { roles } from '@/features/certificates/data/data'
 
-const certificatesSearchSchema = z.object({
+const serversSearchSchema = z.object({
   page: z.number().optional().catch(1),
   pageSize: z.number().optional().catch(10),
   // Facet filters
@@ -26,7 +27,7 @@ const certificatesSearchSchema = z.object({
   certificateName: z.string().optional().catch(''),
 })
 
-export const Route = createFileRoute('/_authenticated/certificates/')({
-  validateSearch: certificatesSearchSchema,
-  component: Certificates,
+export const Route = createFileRoute('/_authenticated/servers/')({
+  validateSearch: serversSearchSchema,
+  component: Servers,
 })
