@@ -37,12 +37,14 @@ export const usersColumns: ColumnDef<User>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: 'appName',
+    accessorKey: 'certificateName',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='App/Service' />
+      <DataTableColumnHeader column={column} title='Certificate name' />
     ),
     cell: ({ row }) => (
-      <LongText className='max-w-36 ps-3'>{row.getValue('appName')}</LongText>
+      <LongText className='max-w-36 ps-3'>
+        {row.getValue('certificateName')}
+      </LongText>
     ),
     meta: {
       className: cn(
@@ -53,38 +55,35 @@ export const usersColumns: ColumnDef<User>[] = [
     enableHiding: false,
   },
   {
-    id: 'fullName',
+    accessorKey: 'application',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Name' />
-    ),
-    cell: ({ row }) => {
-      const { firstName, lastName } = row.original
-      const fullName = `${firstName} ${lastName}`
-      return <LongText className='max-w-36'>{fullName}</LongText>
-    },
-    meta: { className: 'w-36' },
-  },
-  {
-    accessorKey: 'ipAddress',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='IP Address' />
+      <DataTableColumnHeader column={column} title='Application' />
     ),
     cell: ({ row }) => (
-      <div className='w-fit ps-2 text-nowrap'>{row.getValue('ipAddress')}</div>
+      <LongText className='max-w-36'>{row.getValue('application')}</LongText>
     ),
   },
   {
-    accessorKey: 'dominion',
+    accessorKey: 'expiryDate',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Dominion' />
+      <DataTableColumnHeader column={column} title='Expiry Date' />
     ),
-    cell: ({ row }) => <div>{row.getValue('dominion')}</div>,
+    cell: ({ row }) => (
+      <div className='w-fit ps-2 text-nowrap'>{row.getValue('expiryDate')}</div>
+    ),
+  },
+  {
+    accessorKey: 'serverName',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title='Server Name' />
+    ),
+    cell: ({ row }) => <div>{row.getValue('serverName')}</div>,
     enableSorting: false,
   },
   {
-    accessorKey: 'serviceArea',
+    accessorKey: 'status',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Service Area' />
+      <DataTableColumnHeader column={column} title='Status' />
     ),
     cell: ({ row }) => {
       const { status } = row.original
@@ -104,13 +103,13 @@ export const usersColumns: ColumnDef<User>[] = [
     enableSorting: false,
   },
   {
-    accessorKey: 'role',
+    accessorKey: 'environment',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Role' />
+      <DataTableColumnHeader column={column} title='Environment' />
     ),
     cell: ({ row }) => {
-      const { role } = row.original
-      const userType = roles.find(({ value }) => value === role)
+      const { environment } = row.original
+      const userType = roles.find(({ value }) => value === environment)
 
       if (!userType) {
         return null
@@ -121,7 +120,9 @@ export const usersColumns: ColumnDef<User>[] = [
           {userType.icon && (
             <userType.icon size={16} className='text-muted-foreground' />
           )}
-          <span className='text-sm capitalize'>{row.getValue('role')}</span>
+          <span className='text-sm capitalize'>
+            {row.getValue('environment')}
+          </span>
         </div>
       )
     },

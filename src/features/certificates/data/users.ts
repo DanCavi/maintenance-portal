@@ -3,29 +3,34 @@ import { faker } from '@faker-js/faker'
 // Set a fixed seed for consistent data generation
 faker.seed(67890)
 
+const applications = ['DLMS', 'SMTP Relay', 'PAE', 'IAG', 'HSS', 'Snow']
+
+const servers = [
+  'it-usw2-prd-dlms-portal-aas',
+  'it-usw2-prd-dlms-api',
+  'it-usw2-qa-dlms-portal',
+  'smtp-relay-prod',
+  'smtp-relay-qa',
+]
+
 export const users = Array.from({ length: 500 }, () => {
-  const firstName = faker.person.firstName()
-  const lastName = faker.person.lastName()
   return {
     id: faker.string.uuid(),
-    firstName,
-    lastName,
-    appName: faker.internet
-      .username({ firstName, lastName })
-      .toLocaleLowerCase(),
-    email: faker.internet.email({ firstName }).toLocaleLowerCase(),
-    phoneNumber: faker.phone.number({ style: 'international' }),
+    certificateName: `${faker.internet.domainWord()}.bhp.com`,
+    application: faker.helpers.arrayElement(applications),
+    serverName: faker.helpers.arrayElement(servers),
+    expiryDate: faker.date.future().toISOString().split('T')[0],
     status: faker.helpers.arrayElement([
       'active',
-      'inactive',
-      'invited',
-      'suspended',
+      'expiring',
+      'expired',
+      'renewed',
     ]),
-    role: faker.helpers.arrayElement([
-      'superadmin',
-      'admin',
-      'cashier',
-      'manager',
+    environment: faker.helpers.arrayElement([
+      'production',
+      'qa',
+      'development',
+      'testing',
     ]),
     createdAt: faker.date.past(),
     updatedAt: faker.date.recent(),
