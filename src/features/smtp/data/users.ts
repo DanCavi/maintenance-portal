@@ -4,62 +4,72 @@ import { faker } from '@faker-js/faker'
 faker.seed(67890)
 
 const applications = [
-  'Internal Driver Licence',
-  'Estadístico Salud y Seguridad',
+  'SAR 01',
+  'SAR 02',
+  'CC Santiago',
+  'CC Spence',
+  'CC Escondida',
+  'CC Cerro',
   'PMF',
-  'Command Centre Santiago',
-  'Command Centre SPENCE',
-  'Command Centre ESCONDIDA',
-  'Command Centre CERRO',
-  'DLMS',
-  'PDB',
-  'SAR',
-  'MPP',
-  'SIH',
-  'Power BI',
-  'Barreras Mina',
-  'FLY2WORK',
-  'SSPT',
-  'DBMS',
-  'OQT',
-  'RUNA',
-  'RCAE',
 ]
 
 const serverNames = [
-  'ANF0PBAP02',
-  'ANFESC-ORV03',
-  'ANF0QBAP03',
-  'ANFESC-ORA03QA',
-  'ANFESC-SQL01QA',
-  'SCL0QSP01S01\\SQL2017',
-  'MUSW21EPSES001',
-  'MUSW21EQSES001',
-  'MUSW22EPSES002',
-  'MUSW22EQSES002',
+  'scl0epsar02',
+  'scl0epsar01',
+  'SCL0EPCCA01',
+  'SPC0EPCCA01',
+  'ESC0PCCA01',
+  'SCL0EPCCA02',
+  'MUSW21EPMPP001',
 ]
 
-const databases = [
-  'Oracle',
-  'SQL Server',
-  'PostgreSQL',
+const serverIps = [
+  '10.120.45.12',
+  '10.120.45.13',
+  '10.120.46.20',
+  '10.120.46.21',
+  '10.121.10.15',
+  '10.121.10.16',
+  '10.122.30.5',
 ]
+
+// const databases = ['Oracle', 'SQL Server', 'PostgreSQL']
 
 export const servers = Array.from({ length: 500 }, () => {
+  const status = faker.helpers.weightedArrayElement([
+    { weight: 80, value: 'healthy' },
+    { weight: 15, value: 'warning' },
+    { weight: 5, value: 'critical' },
+  ])
+  let expirationDate: Date
+  switch (status) {
+    case 'healthy':
+      expirationDate = faker.date.future({ years: 2 })
+      break
+
+    case 'warning':
+      expirationDate = faker.date.soon({ days: 60 })
+      break
+
+    case 'critical':
+      expirationDate = faker.date.recent({ days: 30 })
+      break
+  }
+
+  const index = faker.number.int({
+    min: 0,
+    max: serverNames.length - 1,
+  })
+
   return {
     id: faker.string.uuid(),
     application: faker.helpers.arrayElement(applications),
-    serverName: faker.helpers.arrayElement(serverNames),
-    database: faker.helpers.arrayElement(databases),
-    status: faker.helpers.arrayElement([
-      'healthy',
-      'warning',
-      'critical',
-    ]),
-    environment: faker.helpers.arrayElement([
-      'production',
-      'qa',
-    ]),
+    serverName: serverNames[index],
+    // database: faker.helpers.arrayElement(databases),
+    serverIp: serverIps[index],
+    status,
+    environment: faker.helpers.arrayElement(['production', 'qa']),
+    expirationDate: expirationDate.toISOString().split('T')[0],
     createdAt: faker.date.past(),
     updatedAt: faker.date.recent(),
   }

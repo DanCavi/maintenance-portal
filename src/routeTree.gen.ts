@@ -30,6 +30,7 @@ import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authentic
 import { Route as AuthenticatedSmtpIndexRouteImport } from './routes/_authenticated/smtp/index'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
 import { Route as AuthenticatedServersIndexRouteImport } from './routes/_authenticated/servers/index'
+import { Route as AuthenticatedSecretKeysIndexRouteImport } from './routes/_authenticated/secret-keys/index'
 import { Route as AuthenticatedHelpCenterIndexRouteImport } from './routes/_authenticated/help-center/index'
 import { Route as AuthenticatedChatsIndexRouteImport } from './routes/_authenticated/chats/index'
 import { Route as AuthenticatedCertificatesIndexRouteImport } from './routes/_authenticated/certificates/index'
@@ -148,6 +149,12 @@ const AuthenticatedServersIndexRoute =
     path: '/servers/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedSecretKeysIndexRoute =
+  AuthenticatedSecretKeysIndexRouteImport.update({
+    id: '/secret-keys/',
+    path: '/secret-keys/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedHelpCenterIndexRoute =
   AuthenticatedHelpCenterIndexRouteImport.update({
     id: '/help-center/',
@@ -243,6 +250,7 @@ export interface FileRoutesByFullPath {
   '/certificates/': typeof AuthenticatedCertificatesIndexRoute
   '/chats/': typeof AuthenticatedChatsIndexRoute
   '/help-center/': typeof AuthenticatedHelpCenterIndexRoute
+  '/secret-keys/': typeof AuthenticatedSecretKeysIndexRoute
   '/servers/': typeof AuthenticatedServersIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
   '/smtp/': typeof AuthenticatedSmtpIndexRoute
@@ -274,6 +282,7 @@ export interface FileRoutesByTo {
   '/certificates': typeof AuthenticatedCertificatesIndexRoute
   '/chats': typeof AuthenticatedChatsIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
+  '/secret-keys': typeof AuthenticatedSecretKeysIndexRoute
   '/servers': typeof AuthenticatedServersIndexRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
   '/smtp': typeof AuthenticatedSmtpIndexRoute
@@ -310,6 +319,7 @@ export interface FileRoutesById {
   '/_authenticated/certificates/': typeof AuthenticatedCertificatesIndexRoute
   '/_authenticated/chats/': typeof AuthenticatedChatsIndexRoute
   '/_authenticated/help-center/': typeof AuthenticatedHelpCenterIndexRoute
+  '/_authenticated/secret-keys/': typeof AuthenticatedSecretKeysIndexRoute
   '/_authenticated/servers/': typeof AuthenticatedServersIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
   '/_authenticated/smtp/': typeof AuthenticatedSmtpIndexRoute
@@ -344,6 +354,7 @@ export interface FileRouteTypes {
     | '/certificates/'
     | '/chats/'
     | '/help-center/'
+    | '/secret-keys/'
     | '/servers/'
     | '/settings/'
     | '/smtp/'
@@ -375,6 +386,7 @@ export interface FileRouteTypes {
     | '/certificates'
     | '/chats'
     | '/help-center'
+    | '/secret-keys'
     | '/servers'
     | '/settings'
     | '/smtp'
@@ -410,6 +422,7 @@ export interface FileRouteTypes {
     | '/_authenticated/certificates/'
     | '/_authenticated/chats/'
     | '/_authenticated/help-center/'
+    | '/_authenticated/secret-keys/'
     | '/_authenticated/servers/'
     | '/_authenticated/settings/'
     | '/_authenticated/smtp/'
@@ -581,6 +594,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedServersIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/secret-keys/': {
+      id: '/_authenticated/secret-keys/'
+      path: '/secret-keys'
+      fullPath: '/secret-keys/'
+      preLoaderRoute: typeof AuthenticatedSecretKeysIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/help-center/': {
       id: '/_authenticated/help-center/'
       path: '/help-center'
@@ -699,6 +719,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedCertificatesIndexRoute: typeof AuthenticatedCertificatesIndexRoute
   AuthenticatedChatsIndexRoute: typeof AuthenticatedChatsIndexRoute
   AuthenticatedHelpCenterIndexRoute: typeof AuthenticatedHelpCenterIndexRoute
+  AuthenticatedSecretKeysIndexRoute: typeof AuthenticatedSecretKeysIndexRoute
   AuthenticatedServersIndexRoute: typeof AuthenticatedServersIndexRoute
   AuthenticatedSmtpIndexRoute: typeof AuthenticatedSmtpIndexRoute
   AuthenticatedTasksIndexRoute: typeof AuthenticatedTasksIndexRoute
@@ -713,6 +734,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCertificatesIndexRoute: AuthenticatedCertificatesIndexRoute,
   AuthenticatedChatsIndexRoute: AuthenticatedChatsIndexRoute,
   AuthenticatedHelpCenterIndexRoute: AuthenticatedHelpCenterIndexRoute,
+  AuthenticatedSecretKeysIndexRoute: AuthenticatedSecretKeysIndexRoute,
   AuthenticatedServersIndexRoute: AuthenticatedServersIndexRoute,
   AuthenticatedSmtpIndexRoute: AuthenticatedSmtpIndexRoute,
   AuthenticatedTasksIndexRoute: AuthenticatedTasksIndexRoute,

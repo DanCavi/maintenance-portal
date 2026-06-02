@@ -37,13 +37,13 @@ export const usersColumns: ColumnDef<User>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: 'serverName',
+    accessorKey: 'displayName',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Server Name' />
+      <DataTableColumnHeader column={column} title='Display Name' />
     ),
     cell: ({ row }) => (
       <LongText className='max-w-36 ps-3'>
-        {row.getValue('serverName')}
+        {row.getValue('displayName')}
       </LongText>
     ),
     meta: {
@@ -55,20 +55,20 @@ export const usersColumns: ColumnDef<User>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: 'serverIp',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Server IP' />
-    ),
-    cell: ({ row }) => (
-      <LongText className='max-w-36'>{row.getValue('serverIp')}</LongText>
-    ),
-  },
-  {
     accessorKey: 'application',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Application' />
     ),
-    cell: ({ row }) => <div>{row.getValue('application')}</div>,
+    cell: ({ row }) => (
+      <LongText className='max-w-36'>{row.getValue('application')}</LongText>
+    ),
+  },
+  {
+    accessorKey: 'serverName',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title='Server Name' />
+    ),
+    cell: ({ row }) => <div>{row.getValue('serverName')}</div>,
     enableSorting: false,
   },
   {
@@ -110,7 +110,7 @@ export const usersColumns: ColumnDef<User>[] = [
       <div className='w-fit ps-2 text-nowrap'>{row.getValue('expirationDate')}</div>
     ),
   },
-
+  
   {
     accessorKey: 'status',
     header: ({ column }) => (
@@ -133,7 +133,7 @@ export const usersColumns: ColumnDef<User>[] = [
     enableHiding: false,
     enableSorting: false,
   },
-
+  
   {
     id: 'actions',
     cell: DataTableRowActions,

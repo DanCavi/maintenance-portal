@@ -1,8 +1,8 @@
-import { ShieldCheck, FlaskConical } from 'lucide-react'
+import { ShieldCheck, FlaskConical, Server, TestTube } from 'lucide-react'
 import { type UserStatus } from './schema'
 
 export const callTypes = new Map<UserStatus, string>([
-   [
+  [
     'healthy',
     'bg-teal-100/30 text-teal-900 dark:text-teal-200 border-teal-200',
   ],
@@ -26,5 +26,15 @@ export const roles = [
     label: 'Quality Assurance',
     value: 'qa',
     icon: FlaskConical,
+  },
+  {
+    label: 'Development',
+    value: 'development',
+    icon: Server,
+  },
+  {
+    label: 'Testing',
+    value: 'testing',
+    icon: TestTube,
   },
 ] as const
