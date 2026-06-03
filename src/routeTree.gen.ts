@@ -29,8 +29,12 @@ import { Route as AuthenticatedUsersIndexRouteImport } from './routes/_authentic
 import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authenticated/tasks/index'
 import { Route as AuthenticatedSmtpIndexRouteImport } from './routes/_authenticated/smtp/index'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
+import { Route as AuthenticatedServiceAccountsIndexRouteImport } from './routes/_authenticated/service-accounts/index'
 import { Route as AuthenticatedServersIndexRouteImport } from './routes/_authenticated/servers/index'
+import { Route as AuthenticatedSecurityGroupsIndexRouteImport } from './routes/_authenticated/security-groups/index'
 import { Route as AuthenticatedSecretKeysIndexRouteImport } from './routes/_authenticated/secret-keys/index'
+import { Route as AuthenticatedSasTokensIndexRouteImport } from './routes/_authenticated/sas-tokens/index'
+import { Route as AuthenticatedRolesApplicationsIndexRouteImport } from './routes/_authenticated/roles-applications/index'
 import { Route as AuthenticatedHelpCenterIndexRouteImport } from './routes/_authenticated/help-center/index'
 import { Route as AuthenticatedChatsIndexRouteImport } from './routes/_authenticated/chats/index'
 import { Route as AuthenticatedCertificatesIndexRouteImport } from './routes/_authenticated/certificates/index'
@@ -143,16 +147,40 @@ const AuthenticatedSettingsIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedSettingsRouteRoute,
   } as any)
+const AuthenticatedServiceAccountsIndexRoute =
+  AuthenticatedServiceAccountsIndexRouteImport.update({
+    id: '/service-accounts/',
+    path: '/service-accounts/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedServersIndexRoute =
   AuthenticatedServersIndexRouteImport.update({
     id: '/servers/',
     path: '/servers/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedSecurityGroupsIndexRoute =
+  AuthenticatedSecurityGroupsIndexRouteImport.update({
+    id: '/security-groups/',
+    path: '/security-groups/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedSecretKeysIndexRoute =
   AuthenticatedSecretKeysIndexRouteImport.update({
     id: '/secret-keys/',
     path: '/secret-keys/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSasTokensIndexRoute =
+  AuthenticatedSasTokensIndexRouteImport.update({
+    id: '/sas-tokens/',
+    path: '/sas-tokens/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedRolesApplicationsIndexRoute =
+  AuthenticatedRolesApplicationsIndexRouteImport.update({
+    id: '/roles-applications/',
+    path: '/roles-applications/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedHelpCenterIndexRoute =
@@ -250,8 +278,12 @@ export interface FileRoutesByFullPath {
   '/certificates/': typeof AuthenticatedCertificatesIndexRoute
   '/chats/': typeof AuthenticatedChatsIndexRoute
   '/help-center/': typeof AuthenticatedHelpCenterIndexRoute
+  '/roles-applications/': typeof AuthenticatedRolesApplicationsIndexRoute
+  '/sas-tokens/': typeof AuthenticatedSasTokensIndexRoute
   '/secret-keys/': typeof AuthenticatedSecretKeysIndexRoute
+  '/security-groups/': typeof AuthenticatedSecurityGroupsIndexRoute
   '/servers/': typeof AuthenticatedServersIndexRoute
+  '/service-accounts/': typeof AuthenticatedServiceAccountsIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
   '/smtp/': typeof AuthenticatedSmtpIndexRoute
   '/tasks/': typeof AuthenticatedTasksIndexRoute
@@ -282,8 +314,12 @@ export interface FileRoutesByTo {
   '/certificates': typeof AuthenticatedCertificatesIndexRoute
   '/chats': typeof AuthenticatedChatsIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
+  '/roles-applications': typeof AuthenticatedRolesApplicationsIndexRoute
+  '/sas-tokens': typeof AuthenticatedSasTokensIndexRoute
   '/secret-keys': typeof AuthenticatedSecretKeysIndexRoute
+  '/security-groups': typeof AuthenticatedSecurityGroupsIndexRoute
   '/servers': typeof AuthenticatedServersIndexRoute
+  '/service-accounts': typeof AuthenticatedServiceAccountsIndexRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
   '/smtp': typeof AuthenticatedSmtpIndexRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
@@ -319,8 +355,12 @@ export interface FileRoutesById {
   '/_authenticated/certificates/': typeof AuthenticatedCertificatesIndexRoute
   '/_authenticated/chats/': typeof AuthenticatedChatsIndexRoute
   '/_authenticated/help-center/': typeof AuthenticatedHelpCenterIndexRoute
+  '/_authenticated/roles-applications/': typeof AuthenticatedRolesApplicationsIndexRoute
+  '/_authenticated/sas-tokens/': typeof AuthenticatedSasTokensIndexRoute
   '/_authenticated/secret-keys/': typeof AuthenticatedSecretKeysIndexRoute
+  '/_authenticated/security-groups/': typeof AuthenticatedSecurityGroupsIndexRoute
   '/_authenticated/servers/': typeof AuthenticatedServersIndexRoute
+  '/_authenticated/service-accounts/': typeof AuthenticatedServiceAccountsIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
   '/_authenticated/smtp/': typeof AuthenticatedSmtpIndexRoute
   '/_authenticated/tasks/': typeof AuthenticatedTasksIndexRoute
@@ -354,8 +394,12 @@ export interface FileRouteTypes {
     | '/certificates/'
     | '/chats/'
     | '/help-center/'
+    | '/roles-applications/'
+    | '/sas-tokens/'
     | '/secret-keys/'
+    | '/security-groups/'
     | '/servers/'
+    | '/service-accounts/'
     | '/settings/'
     | '/smtp/'
     | '/tasks/'
@@ -386,8 +430,12 @@ export interface FileRouteTypes {
     | '/certificates'
     | '/chats'
     | '/help-center'
+    | '/roles-applications'
+    | '/sas-tokens'
     | '/secret-keys'
+    | '/security-groups'
     | '/servers'
+    | '/service-accounts'
     | '/settings'
     | '/smtp'
     | '/tasks'
@@ -422,8 +470,12 @@ export interface FileRouteTypes {
     | '/_authenticated/certificates/'
     | '/_authenticated/chats/'
     | '/_authenticated/help-center/'
+    | '/_authenticated/roles-applications/'
+    | '/_authenticated/sas-tokens/'
     | '/_authenticated/secret-keys/'
+    | '/_authenticated/security-groups/'
     | '/_authenticated/servers/'
+    | '/_authenticated/service-accounts/'
     | '/_authenticated/settings/'
     | '/_authenticated/smtp/'
     | '/_authenticated/tasks/'
@@ -587,6 +639,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsIndexRouteImport
       parentRoute: typeof AuthenticatedSettingsRouteRoute
     }
+    '/_authenticated/service-accounts/': {
+      id: '/_authenticated/service-accounts/'
+      path: '/service-accounts'
+      fullPath: '/service-accounts/'
+      preLoaderRoute: typeof AuthenticatedServiceAccountsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/servers/': {
       id: '/_authenticated/servers/'
       path: '/servers'
@@ -594,11 +653,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedServersIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/security-groups/': {
+      id: '/_authenticated/security-groups/'
+      path: '/security-groups'
+      fullPath: '/security-groups/'
+      preLoaderRoute: typeof AuthenticatedSecurityGroupsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/secret-keys/': {
       id: '/_authenticated/secret-keys/'
       path: '/secret-keys'
       fullPath: '/secret-keys/'
       preLoaderRoute: typeof AuthenticatedSecretKeysIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/sas-tokens/': {
+      id: '/_authenticated/sas-tokens/'
+      path: '/sas-tokens'
+      fullPath: '/sas-tokens/'
+      preLoaderRoute: typeof AuthenticatedSasTokensIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/roles-applications/': {
+      id: '/_authenticated/roles-applications/'
+      path: '/roles-applications'
+      fullPath: '/roles-applications/'
+      preLoaderRoute: typeof AuthenticatedRolesApplicationsIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/help-center/': {
@@ -719,8 +799,12 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedCertificatesIndexRoute: typeof AuthenticatedCertificatesIndexRoute
   AuthenticatedChatsIndexRoute: typeof AuthenticatedChatsIndexRoute
   AuthenticatedHelpCenterIndexRoute: typeof AuthenticatedHelpCenterIndexRoute
+  AuthenticatedRolesApplicationsIndexRoute: typeof AuthenticatedRolesApplicationsIndexRoute
+  AuthenticatedSasTokensIndexRoute: typeof AuthenticatedSasTokensIndexRoute
   AuthenticatedSecretKeysIndexRoute: typeof AuthenticatedSecretKeysIndexRoute
+  AuthenticatedSecurityGroupsIndexRoute: typeof AuthenticatedSecurityGroupsIndexRoute
   AuthenticatedServersIndexRoute: typeof AuthenticatedServersIndexRoute
+  AuthenticatedServiceAccountsIndexRoute: typeof AuthenticatedServiceAccountsIndexRoute
   AuthenticatedSmtpIndexRoute: typeof AuthenticatedSmtpIndexRoute
   AuthenticatedTasksIndexRoute: typeof AuthenticatedTasksIndexRoute
   AuthenticatedUsersIndexRoute: typeof AuthenticatedUsersIndexRoute
@@ -734,8 +818,14 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCertificatesIndexRoute: AuthenticatedCertificatesIndexRoute,
   AuthenticatedChatsIndexRoute: AuthenticatedChatsIndexRoute,
   AuthenticatedHelpCenterIndexRoute: AuthenticatedHelpCenterIndexRoute,
+  AuthenticatedRolesApplicationsIndexRoute:
+    AuthenticatedRolesApplicationsIndexRoute,
+  AuthenticatedSasTokensIndexRoute: AuthenticatedSasTokensIndexRoute,
   AuthenticatedSecretKeysIndexRoute: AuthenticatedSecretKeysIndexRoute,
+  AuthenticatedSecurityGroupsIndexRoute: AuthenticatedSecurityGroupsIndexRoute,
   AuthenticatedServersIndexRoute: AuthenticatedServersIndexRoute,
+  AuthenticatedServiceAccountsIndexRoute:
+    AuthenticatedServiceAccountsIndexRoute,
   AuthenticatedSmtpIndexRoute: AuthenticatedSmtpIndexRoute,
   AuthenticatedTasksIndexRoute: AuthenticatedTasksIndexRoute,
   AuthenticatedUsersIndexRoute: AuthenticatedUsersIndexRoute,
