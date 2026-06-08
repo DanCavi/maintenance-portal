@@ -26,6 +26,7 @@ import { Route as ClerkAuthenticatedRouteRouteImport } from './routes/clerk/_aut
 import { Route as ClerkauthRouteRouteImport } from './routes/clerk/(auth)/route'
 import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authenticated/settings/route'
 import { Route as AuthenticatedUsersIndexRouteImport } from './routes/_authenticated/users/index'
+import { Route as AuthenticatedUserStatusIndexRouteImport } from './routes/_authenticated/user-status/index'
 import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authenticated/tasks/index'
 import { Route as AuthenticatedSmtpIndexRouteImport } from './routes/_authenticated/smtp/index'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
@@ -35,6 +36,9 @@ import { Route as AuthenticatedSecurityGroupsIndexRouteImport } from './routes/_
 import { Route as AuthenticatedSecretKeysIndexRouteImport } from './routes/_authenticated/secret-keys/index'
 import { Route as AuthenticatedSasTokensIndexRouteImport } from './routes/_authenticated/sas-tokens/index'
 import { Route as AuthenticatedRolesApplicationsIndexRouteImport } from './routes/_authenticated/roles-applications/index'
+import { Route as AuthenticatedQueriesIndexRouteImport } from './routes/_authenticated/queries/index'
+import { Route as AuthenticatedPatchManagementIndexRouteImport } from './routes/_authenticated/patch-management/index'
+import { Route as AuthenticatedImpactChangesIndexRouteImport } from './routes/_authenticated/impact-changes/index'
 import { Route as AuthenticatedHelpCenterIndexRouteImport } from './routes/_authenticated/help-center/index'
 import { Route as AuthenticatedChatsIndexRouteImport } from './routes/_authenticated/chats/index'
 import { Route as AuthenticatedCertificatesIndexRouteImport } from './routes/_authenticated/certificates/index'
@@ -131,6 +135,12 @@ const AuthenticatedUsersIndexRoute = AuthenticatedUsersIndexRouteImport.update({
   path: '/users/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedUserStatusIndexRoute =
+  AuthenticatedUserStatusIndexRouteImport.update({
+    id: '/user-status/',
+    path: '/user-status/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedTasksIndexRoute = AuthenticatedTasksIndexRouteImport.update({
   id: '/tasks/',
   path: '/tasks/',
@@ -181,6 +191,24 @@ const AuthenticatedRolesApplicationsIndexRoute =
   AuthenticatedRolesApplicationsIndexRouteImport.update({
     id: '/roles-applications/',
     path: '/roles-applications/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedQueriesIndexRoute =
+  AuthenticatedQueriesIndexRouteImport.update({
+    id: '/queries/',
+    path: '/queries/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPatchManagementIndexRoute =
+  AuthenticatedPatchManagementIndexRouteImport.update({
+    id: '/patch-management/',
+    path: '/patch-management/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedImpactChangesIndexRoute =
+  AuthenticatedImpactChangesIndexRouteImport.update({
+    id: '/impact-changes/',
+    path: '/impact-changes/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedHelpCenterIndexRoute =
@@ -278,6 +306,9 @@ export interface FileRoutesByFullPath {
   '/certificates/': typeof AuthenticatedCertificatesIndexRoute
   '/chats/': typeof AuthenticatedChatsIndexRoute
   '/help-center/': typeof AuthenticatedHelpCenterIndexRoute
+  '/impact-changes/': typeof AuthenticatedImpactChangesIndexRoute
+  '/patch-management/': typeof AuthenticatedPatchManagementIndexRoute
+  '/queries/': typeof AuthenticatedQueriesIndexRoute
   '/roles-applications/': typeof AuthenticatedRolesApplicationsIndexRoute
   '/sas-tokens/': typeof AuthenticatedSasTokensIndexRoute
   '/secret-keys/': typeof AuthenticatedSecretKeysIndexRoute
@@ -287,6 +318,7 @@ export interface FileRoutesByFullPath {
   '/settings/': typeof AuthenticatedSettingsIndexRoute
   '/smtp/': typeof AuthenticatedSmtpIndexRoute
   '/tasks/': typeof AuthenticatedTasksIndexRoute
+  '/user-status/': typeof AuthenticatedUserStatusIndexRoute
   '/users/': typeof AuthenticatedUsersIndexRoute
 }
 export interface FileRoutesByTo {
@@ -314,6 +346,9 @@ export interface FileRoutesByTo {
   '/certificates': typeof AuthenticatedCertificatesIndexRoute
   '/chats': typeof AuthenticatedChatsIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
+  '/impact-changes': typeof AuthenticatedImpactChangesIndexRoute
+  '/patch-management': typeof AuthenticatedPatchManagementIndexRoute
+  '/queries': typeof AuthenticatedQueriesIndexRoute
   '/roles-applications': typeof AuthenticatedRolesApplicationsIndexRoute
   '/sas-tokens': typeof AuthenticatedSasTokensIndexRoute
   '/secret-keys': typeof AuthenticatedSecretKeysIndexRoute
@@ -323,6 +358,7 @@ export interface FileRoutesByTo {
   '/settings': typeof AuthenticatedSettingsIndexRoute
   '/smtp': typeof AuthenticatedSmtpIndexRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
+  '/user-status': typeof AuthenticatedUserStatusIndexRoute
   '/users': typeof AuthenticatedUsersIndexRoute
 }
 export interface FileRoutesById {
@@ -355,6 +391,9 @@ export interface FileRoutesById {
   '/_authenticated/certificates/': typeof AuthenticatedCertificatesIndexRoute
   '/_authenticated/chats/': typeof AuthenticatedChatsIndexRoute
   '/_authenticated/help-center/': typeof AuthenticatedHelpCenterIndexRoute
+  '/_authenticated/impact-changes/': typeof AuthenticatedImpactChangesIndexRoute
+  '/_authenticated/patch-management/': typeof AuthenticatedPatchManagementIndexRoute
+  '/_authenticated/queries/': typeof AuthenticatedQueriesIndexRoute
   '/_authenticated/roles-applications/': typeof AuthenticatedRolesApplicationsIndexRoute
   '/_authenticated/sas-tokens/': typeof AuthenticatedSasTokensIndexRoute
   '/_authenticated/secret-keys/': typeof AuthenticatedSecretKeysIndexRoute
@@ -364,6 +403,7 @@ export interface FileRoutesById {
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
   '/_authenticated/smtp/': typeof AuthenticatedSmtpIndexRoute
   '/_authenticated/tasks/': typeof AuthenticatedTasksIndexRoute
+  '/_authenticated/user-status/': typeof AuthenticatedUserStatusIndexRoute
   '/_authenticated/users/': typeof AuthenticatedUsersIndexRoute
 }
 export interface FileRouteTypes {
@@ -394,6 +434,9 @@ export interface FileRouteTypes {
     | '/certificates/'
     | '/chats/'
     | '/help-center/'
+    | '/impact-changes/'
+    | '/patch-management/'
+    | '/queries/'
     | '/roles-applications/'
     | '/sas-tokens/'
     | '/secret-keys/'
@@ -403,6 +446,7 @@ export interface FileRouteTypes {
     | '/settings/'
     | '/smtp/'
     | '/tasks/'
+    | '/user-status/'
     | '/users/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -430,6 +474,9 @@ export interface FileRouteTypes {
     | '/certificates'
     | '/chats'
     | '/help-center'
+    | '/impact-changes'
+    | '/patch-management'
+    | '/queries'
     | '/roles-applications'
     | '/sas-tokens'
     | '/secret-keys'
@@ -439,6 +486,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/smtp'
     | '/tasks'
+    | '/user-status'
     | '/users'
   id:
     | '__root__'
@@ -470,6 +518,9 @@ export interface FileRouteTypes {
     | '/_authenticated/certificates/'
     | '/_authenticated/chats/'
     | '/_authenticated/help-center/'
+    | '/_authenticated/impact-changes/'
+    | '/_authenticated/patch-management/'
+    | '/_authenticated/queries/'
     | '/_authenticated/roles-applications/'
     | '/_authenticated/sas-tokens/'
     | '/_authenticated/secret-keys/'
@@ -479,6 +530,7 @@ export interface FileRouteTypes {
     | '/_authenticated/settings/'
     | '/_authenticated/smtp/'
     | '/_authenticated/tasks/'
+    | '/_authenticated/user-status/'
     | '/_authenticated/users/'
   fileRoutesById: FileRoutesById
 }
@@ -618,6 +670,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedUsersIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/user-status/': {
+      id: '/_authenticated/user-status/'
+      path: '/user-status'
+      fullPath: '/user-status/'
+      preLoaderRoute: typeof AuthenticatedUserStatusIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/tasks/': {
       id: '/_authenticated/tasks/'
       path: '/tasks'
@@ -679,6 +738,27 @@ declare module '@tanstack/react-router' {
       path: '/roles-applications'
       fullPath: '/roles-applications/'
       preLoaderRoute: typeof AuthenticatedRolesApplicationsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/queries/': {
+      id: '/_authenticated/queries/'
+      path: '/queries'
+      fullPath: '/queries/'
+      preLoaderRoute: typeof AuthenticatedQueriesIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/patch-management/': {
+      id: '/_authenticated/patch-management/'
+      path: '/patch-management'
+      fullPath: '/patch-management/'
+      preLoaderRoute: typeof AuthenticatedPatchManagementIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/impact-changes/': {
+      id: '/_authenticated/impact-changes/'
+      path: '/impact-changes'
+      fullPath: '/impact-changes/'
+      preLoaderRoute: typeof AuthenticatedImpactChangesIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/help-center/': {
@@ -799,6 +879,9 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedCertificatesIndexRoute: typeof AuthenticatedCertificatesIndexRoute
   AuthenticatedChatsIndexRoute: typeof AuthenticatedChatsIndexRoute
   AuthenticatedHelpCenterIndexRoute: typeof AuthenticatedHelpCenterIndexRoute
+  AuthenticatedImpactChangesIndexRoute: typeof AuthenticatedImpactChangesIndexRoute
+  AuthenticatedPatchManagementIndexRoute: typeof AuthenticatedPatchManagementIndexRoute
+  AuthenticatedQueriesIndexRoute: typeof AuthenticatedQueriesIndexRoute
   AuthenticatedRolesApplicationsIndexRoute: typeof AuthenticatedRolesApplicationsIndexRoute
   AuthenticatedSasTokensIndexRoute: typeof AuthenticatedSasTokensIndexRoute
   AuthenticatedSecretKeysIndexRoute: typeof AuthenticatedSecretKeysIndexRoute
@@ -807,6 +890,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedServiceAccountsIndexRoute: typeof AuthenticatedServiceAccountsIndexRoute
   AuthenticatedSmtpIndexRoute: typeof AuthenticatedSmtpIndexRoute
   AuthenticatedTasksIndexRoute: typeof AuthenticatedTasksIndexRoute
+  AuthenticatedUserStatusIndexRoute: typeof AuthenticatedUserStatusIndexRoute
   AuthenticatedUsersIndexRoute: typeof AuthenticatedUsersIndexRoute
 }
 
@@ -818,6 +902,10 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCertificatesIndexRoute: AuthenticatedCertificatesIndexRoute,
   AuthenticatedChatsIndexRoute: AuthenticatedChatsIndexRoute,
   AuthenticatedHelpCenterIndexRoute: AuthenticatedHelpCenterIndexRoute,
+  AuthenticatedImpactChangesIndexRoute: AuthenticatedImpactChangesIndexRoute,
+  AuthenticatedPatchManagementIndexRoute:
+    AuthenticatedPatchManagementIndexRoute,
+  AuthenticatedQueriesIndexRoute: AuthenticatedQueriesIndexRoute,
   AuthenticatedRolesApplicationsIndexRoute:
     AuthenticatedRolesApplicationsIndexRoute,
   AuthenticatedSasTokensIndexRoute: AuthenticatedSasTokensIndexRoute,
@@ -828,6 +916,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
     AuthenticatedServiceAccountsIndexRoute,
   AuthenticatedSmtpIndexRoute: AuthenticatedSmtpIndexRoute,
   AuthenticatedTasksIndexRoute: AuthenticatedTasksIndexRoute,
+  AuthenticatedUserStatusIndexRoute: AuthenticatedUserStatusIndexRoute,
   AuthenticatedUsersIndexRoute: AuthenticatedUsersIndexRoute,
 }
 

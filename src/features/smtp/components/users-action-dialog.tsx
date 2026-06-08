@@ -22,22 +22,24 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { PasswordInput } from '@/components/password-input'
+// import { PasswordInput } from '@/components/password-input'
 import { SelectDropdown } from '@/components/select-dropdown'
 import { roles } from '../data/data'
 import { type User } from '../data/schema'
 
 const formSchema = z
   .object({
-    firstName: z.string().min(1, 'First Name is required.'),
-    lastName: z.string().min(1, 'Last Name is required.'),
-    username: z.string().min(1, 'Username is required.'),
-    phoneNumber: z.string().min(1, 'Phone number is required.'),
+    serverName: z.string().min(1, 'Server Name is required.'),
+    serverIp: z.string().min(1, 'Server IP is required.'),
+    application: z.string().min(1, 'Application is required.'),
+    expirationDate: z.string().min(1, 'Expiration Date is required.'),
+    updatedBy: z.string().min(1, 'Updated By is required.'),
+    observation: z.string().max(200, 'Observation must be at most 200 characters.'),
     email: z.email({
       error: (iss) => (iss.input === '' ? 'Email is required.' : undefined),
     }),
     password: z.string().transform((pwd) => pwd.trim()),
-    role: z.string().min(1, 'Role is required.'),
+    environment: z.string().min(1, 'Environment is required.'),
     confirmPassword: z.string().transform((pwd) => pwd.trim()),
     isEdit: z.boolean(),
   })
@@ -115,12 +117,14 @@ export function UsersActionDialog({
           isEdit,
         }
       : {
-          firstName: '',
-          lastName: '',
-          username: '',
+          serverName: '',
+          serverIp: '',
+          application: '',
+          expirationDate: '',
+          updatedBy: '',
+          observation: '',
           email: '',
-          role: '',
-          phoneNumber: '',
+          environment: '',
           password: '',
           confirmPassword: '',
           isEdit,
@@ -133,7 +137,7 @@ export function UsersActionDialog({
     onOpenChange(false)
   }
 
-  const isPasswordTouched = !!form.formState.dirtyFields.password
+  // const isPasswordTouched = !!form.formState.dirtyFields.password
 
   return (
     <Dialog
@@ -160,15 +164,15 @@ export function UsersActionDialog({
             >
               <FormField
                 control={form.control}
-                name='firstName'
+                name='serverName'
                 render={({ field }) => (
                   <FormItem className='grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1'>
                     <FormLabel className='col-span-2 text-end'>
-                      First Name
+                      Server Name
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder='John'
+                        placeholder='Server name...'
                         className='col-span-4'
                         autoComplete='off'
                         {...field}
@@ -180,15 +184,15 @@ export function UsersActionDialog({
               />
               <FormField
                 control={form.control}
-                name='lastName'
+                name='serverIp'
                 render={({ field }) => (
                   <FormItem className='grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1'>
                     <FormLabel className='col-span-2 text-end'>
-                      Last Name
+                      Server IP
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder='Doe'
+                        placeholder='192.168.1.1'
                         className='col-span-4'
                         autoComplete='off'
                         {...field}
@@ -200,11 +204,11 @@ export function UsersActionDialog({
               />
               <FormField
                 control={form.control}
-                name='username'
+                name='application'
                 render={({ field }) => (
                   <FormItem className='grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1'>
                     <FormLabel className='col-span-2 text-end'>
-                      Username
+                      Application
                     </FormLabel>
                     <FormControl>
                       <Input
@@ -217,30 +221,14 @@ export function UsersActionDialog({
                   </FormItem>
                 )}
               />
+            
               <FormField
                 control={form.control}
-                name='email'
-                render={({ field }) => (
-                  <FormItem className='grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1'>
-                    <FormLabel className='col-span-2 text-end'>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder='john.doe@gmail.com'
-                        className='col-span-4'
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage className='col-span-4 col-start-3' />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name='phoneNumber'
+                name='expirationDate'
                 render={({ field }) => (
                   <FormItem className='grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1'>
                     <FormLabel className='col-span-2 text-end'>
-                      Phone Number
+                      Expiration Date
                     </FormLabel>
                     <FormControl>
                       <Input
@@ -255,10 +243,10 @@ export function UsersActionDialog({
               />
               <FormField
                 control={form.control}
-                name='role'
+                name='environment'
                 render={({ field }) => (
                   <FormItem className='grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1'>
-                    <FormLabel className='col-span-2 text-end'>Role</FormLabel>
+                    <FormLabel className='col-span-2 text-end'>Environment</FormLabel>
                     <SelectDropdown
                       defaultValue={field.value}
                       onValueChange={field.onChange}
@@ -273,17 +261,18 @@ export function UsersActionDialog({
                   </FormItem>
                 )}
               />
+
               <FormField
                 control={form.control}
-                name='password'
+                name='updatedBy'
                 render={({ field }) => (
                   <FormItem className='grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1'>
                     <FormLabel className='col-span-2 text-end'>
-                      Password
+                      Updated By
                     </FormLabel>
                     <FormControl>
-                      <PasswordInput
-                        placeholder='e.g., S3cur3P@ssw0rd'
+                      <Input
+                        placeholder='John Doe'
                         className='col-span-4'
                         {...field}
                       />
@@ -292,18 +281,18 @@ export function UsersActionDialog({
                   </FormItem>
                 )}
               />
+
               <FormField
                 control={form.control}
-                name='confirmPassword'
+                name='observation'
                 render={({ field }) => (
                   <FormItem className='grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1'>
                     <FormLabel className='col-span-2 text-end'>
-                      Confirm Password
+                      Observation
                     </FormLabel>
                     <FormControl>
-                      <PasswordInput
-                        disabled={!isPasswordTouched}
-                        placeholder='e.g., S3cur3P@ssw0rd'
+                      <Input
+                        placeholder='Observation...'
                         className='col-span-4'
                         {...field}
                       />
@@ -312,6 +301,7 @@ export function UsersActionDialog({
                   </FormItem>
                 )}
               />
+              
             </form>
           </Form>
         </div>

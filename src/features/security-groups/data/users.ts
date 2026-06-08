@@ -4,38 +4,39 @@ import { faker } from '@faker-js/faker'
 faker.seed(67890)
 
 const applications = [
-  'PMF',
-  'Command Centre Santiago',
-  'Command Centre SPENCE',
-  'Command Centre ESCONDIDA',
-  'Command Centre CERRO',
-  'DLMS',
-  'SIH',
-  'SAR',
+  'Atlas',
+  'Nimbus',
+  'Orion',
+  'Vertex',
+  'Horizon',
+  'Operations Hub',
+  'Asset Tracker',
+  'Analytics Portal',
 ]
 
 const serviceAccounts = [
-  'SA_PMF-PROD-01',
-  'SA_PMF-QA-01',
-  'SA_PMF_DEV',
-  'SA_MON_NR_PMF',
-  'SA_CCSCL-SQL-PROD-01',
-  'SA_CCSPC-SQL-PROD-01',
-  'SA_CCESC-SQL-PROD-01',
-  'SA_DLMS-PROD',
+  'SA_ATLAS_PROD_01',
+  'SA_ATLAS_QA_01',
+  'SA_NIMBUS_PROD_01',
+  'SA_NIMBUS_QA_01',
+  'SA_ORION_BATCH_01',
+  'SA_VERTEX_API_01',
+  'SA_HORIZON_APP_01',
+  'SA_MONITORING_01',
 ]
 
 const usedIn = [
-  'Monitoreo New Relic',
-  'SQL Server',
+  'Monitoring',
+  'Database Access',
   'Application Pool',
   'Windows Service',
   'API Authentication',
-  'Batch Process',
+  'Batch Processing',
+  'Scheduled Jobs',
+  'Background Worker',
 ]
 
-const actionReqs = ['CHG0351748', 'CHG0352874', 'RITM4166060', 'RITM4210045']
-
+// const actionReqs = ['CHG100001', 'CHG100002', 'REQ100001', 'REQ100002']
 // const databases = ['Oracle', 'SQL Server', 'PostgreSQL']
 
 export const servers = Array.from({ length: 0 }, () => {
@@ -64,8 +65,10 @@ export const servers = Array.from({ length: 0 }, () => {
     application: faker.helpers.arrayElement(applications),
     serviceAccount: faker.helpers.arrayElement(serviceAccounts),
     usedIn: faker.helpers.arrayElement(usedIn),
-    actionReq: faker.helpers.arrayElement(actionReqs),
-    // database: faker.helpers.arrayElement(databases),
+    actionReq: faker.helpers.arrayElement([
+      `CHG${faker.number.int({ min: 100000, max: 999999 })}`,
+      `REQ${faker.number.int({ min: 100000, max: 999999 })}`,
+    ]), // database: faker.helpers.arrayElement(databases),
     status,
     environment: faker.helpers.arrayElement([
       'production',

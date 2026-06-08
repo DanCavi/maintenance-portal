@@ -101,22 +101,21 @@ export function UsersTable({ data, search, navigate }: DataTableProps) {
     >
       <DataTableToolbar
         table={table}
-        searchPlaceholder='Filter certificates...'
-        searchKey='appName'
+        searchPlaceholder='Filter servers...'
+        searchKey='application'
         filters={[
           {
             columnId: 'status',
             title: 'Status',
             options: [
-              { label: 'Active', value: 'active' },
-              { label: 'Inactive', value: 'inactive' },
-              { label: 'Invited', value: 'invited' },
-              { label: 'Suspended', value: 'suspended' },
+              { label: 'Healthy', value: 'healthy' },
+              { label: 'Critical', value: 'critical' },
+              { label: 'Warning', value: 'warning' },
             ],
           },
           {
-            columnId: 'role',
-            title: 'Role',
+            columnId: 'environment',
+            title: 'Environment',
             options: roles.map((role) => ({ ...role })),
           },
         ]}

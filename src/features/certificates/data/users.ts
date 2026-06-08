@@ -3,14 +3,21 @@ import { faker } from '@faker-js/faker'
 // Set a fixed seed for consistent data generation
 faker.seed(67890)
 
-const applications = ['DLMS', 'SMTP Relay', 'PAE', 'IAG', 'HSS', 'Snow']
+const applications = [
+  'Inventory Portal',
+  'Asset Tracker',
+  'Operations Hub',
+  'Maintenance Suite',
+  'Workforce Manager',
+  'Analytics Dashboard',
+]
 
 const servers = [
-  'it-usw2-prd-dlms-portal-aas',
-  'it-usw2-prd-dlms-api',
-  'it-usw2-qa-dlms-portal',
-  'smtp-relay-prod',
-  'smtp-relay-qa',
+  'corp-prd-app01',
+  'corp-prd-api01',
+  'corp-qa-app01',
+  'corp-dev-api01',
+  'corp-tst-web01',
 ]
 
 export const users = Array.from({ length: 500 }, () => {

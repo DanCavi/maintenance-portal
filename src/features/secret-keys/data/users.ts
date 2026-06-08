@@ -4,40 +4,46 @@ import { faker } from '@faker-js/faker'
 faker.seed(67890)
 
 const applications = [
-  'SAR',
-  'SAR API',
-  'SAR EXTERNAL PROXY API',
-  'DLMS',
-  'PMF',
-  'PMF API',
-  'DBMS - SPC',
-  'F2W',
-  'SIH',
+  'Atlas',
+  'Atlas API',
+  'Atlas Gateway',
+  'Nimbus',
+  'Nimbus API',
+  'Orion',
+  'Orion Analytics',
+  'Vertex',
+  'Horizon',
 ]
-const servers = ['AZURE', 'SCL0EPSAR01', 'GSIH', 'it-fna-usw2-prd-growth']
+
+const servers = [
+  'AZURE',
+  'corp-prd-app01',
+  'corp-qa-app01',
+  'corp-prd-api01',
+]
 
 const displayNames = [
-  'Site Access Request - Prod',
-  'SAR API - Prod',
-  'SAR API - Test',
-  'SAR External Proxy API',
-  'Driver License Management System (DLMS) - Prod',
-  'Driver License Management System (DLMS) - Test',
-  'PMF - Prod (People Maintainer Forms)',
-  'PMF API - Prod',
-  'Fly2Work-P',
-  'Fly2Work QA-NP',
-  'azure-accesscontrol-prd-sp',
-  'azure-accesscontrol-npe-sp',
+  'Atlas - Production',
+  'Atlas API - Production',
+  'Atlas API - QA',
+  'Atlas Gateway',
+  'Nimbus - Production',
+  'Nimbus - QA',
+  'Nimbus API - Production',
+  'Orion Analytics - Production',
+  'Vertex Platform',
+  'Vertex QA',
+  'identity-access-prod-sp',
+  'identity-access-qa-sp',
 ]
 
 const owners = [
-  'Rayzza Santos',
-  'Amrut Ijeri',
-  'Juan Rojas',
-  'Christian Gonzalez',
-  'Jay Ritesh',
-  'Edgar Cortez',
+  'Alex Carter',
+  'Jordan Miller',
+  'Taylor Morgan',
+  'Casey Parker',
+  'Jamie Cooper',
+  'Riley Bennett',
 ]
 
 export const users = Array.from({ length: 500 }, () => {

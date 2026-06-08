@@ -4,21 +4,23 @@ import { faker } from '@faker-js/faker'
 faker.seed(67890)
 
 const storageNames = [
-  'it1growthdv1thm: test-growth',
-  'it1growthqa1dqq: qa-growth',
-  'it1growthprd1thm: prod-growth',
+  'stgdev001',
+  'stgqa001',
+  'stgprd001',
 ]
 
 const applications = [
-  'SIH',
+  'Atlas',
+  'Nimbus',
+  'Orion',
 ]
 
 
 
 const requests = [
-  'RITM4166060',
-  'RITM4185021',
-  'RITM4210045',
+  'REQ100001',
+  'REQ100002',
+  'REQ100003',
 ]
 
 // const databases = ['Oracle', 'SQL Server', 'PostgreSQL']
