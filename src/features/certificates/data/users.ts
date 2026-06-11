@@ -23,7 +23,7 @@ const servers = [
 export const users = Array.from({ length: 500 }, () => {
   return {
     id: faker.string.uuid(),
-    certificateName: `${faker.internet.domainWord()}.bhp.com`,
+    certificateName: `${faker.internet.domainWord()}.corp.com`,
     application: faker.helpers.arrayElement(applications),
     serverName: faker.helpers.arrayElement(servers),
     expiryDate: faker.date.future().toISOString().split('T')[0],
