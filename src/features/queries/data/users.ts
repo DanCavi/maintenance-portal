@@ -16,18 +16,12 @@ const queryNames = [
 ]
 
 const applications = [
-  'DLMS',
-  'SAR',
-  'PMF',
-  'SIH',
-  'DBMS',
-  'FLY2WORK',
-  'Command Centre Santiago',
-  'Command Centre SPENCE',
-  'Command Centre ESCONDIDA',
-  'Command Centre CERRO',
-  'RUNA',
-  'RCAE',
+  'Atlas',
+  'Atlas Mobile',
+  'Nimbus',
+  'Orion',
+  'Vertex',
+  
 ]
 
 const categories = [
